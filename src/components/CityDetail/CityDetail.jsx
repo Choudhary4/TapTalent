@@ -244,14 +244,14 @@ const CityDetail = () => {
               <Line
                 type="monotone"
                 dataKey="temp"
-                stroke="#667eea"
+                stroke="#FDD835"
                 strokeWidth={2}
                 name={`Temperature (${tempUnit})`}
               />
               <Line
                 type="monotone"
                 dataKey="feelsLike"
-                stroke="#764ba2"
+                stroke="#FBC02D"
                 strokeWidth={2}
                 strokeDasharray="5 5"
                 name={`Feels Like (${tempUnit})`}
@@ -273,10 +273,10 @@ const CityDetail = () => {
               <Bar
                 yAxisId="left"
                 dataKey="wind"
-                fill="#667eea"
+                fill="#FDD835"
                 name={`Wind (${speedUnit})`}
               />
-              <Bar yAxisId="right" dataKey="humidity" fill="#3498db" name="Humidity (%)" />
+              <Bar yAxisId="right" dataKey="humidity" fill="#64B5F6" name="Humidity (%)" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -294,10 +294,10 @@ const CityDetail = () => {
               <Bar
                 yAxisId="left"
                 dataKey="precipitation"
-                fill="#3498db"
+                fill="#64B5F6"
                 name="Precipitation (mm)"
               />
-              <Bar yAxisId="right" dataKey="uv" fill="#f39c12" name="UV Index" />
+              <Bar yAxisId="right" dataKey="uv" fill="#FBC02D" name="UV Index" />
             </BarChart>
           </ResponsiveContainer>
         </div>
