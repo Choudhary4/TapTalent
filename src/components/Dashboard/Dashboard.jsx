@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchCurrentWeather } from '../../store/slices/weatherSlice';
@@ -13,9 +13,20 @@ const Dashboard = () => {
   const currentWeather = useSelector((state) => state.weather.currentWeather);
   const unit = useSelector((state) => state.settings.unit);
   const lastUpdated = useSelector((state) => state.weather.lastUpdated);
+  const prevUnit = useRef(unit);
+
+  // Fetch weather when unit changes
+  useEffect(() => {
+    if (prevUnit.current !== unit && favorites.length > 0) {
+      favorites.forEach((city) => {
+        dispatch(fetchCurrentWeather({ city: city.name, unit }));
+      });
+    }
+    prevUnit.current = unit;
+  }, [unit, favorites, dispatch]);
 
   useEffect(() => {
-    // Fetch weather for all favorite cities
+    // Fetch weather for all favorite cities on mount
     if (favorites.length > 0) {
       favorites.forEach((city) => {
         const lastUpdate = lastUpdated[city.name];
@@ -26,7 +37,7 @@ const Dashboard = () => {
         }
       });
     }
-  }, [favorites, unit, dispatch]);
+  }, [favorites, dispatch]);
 
   // Set up auto-refresh every 60 seconds
   useEffect(() => {
